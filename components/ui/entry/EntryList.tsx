@@ -1,6 +1,6 @@
 import EntryCard from "./EntryCard";
 import { EntryStatus} from "../../../interfaces";
-import {FC, useContext, useMemo} from "react";
+import {FC, useContext, useMemo, useState} from "react";
 import {EntriesContext} from "../../../context/entries";
 import NewEntry from "./NewEntry";
 import {PlusCircleIcon} from '@heroicons/react/24/outline'
@@ -13,21 +13,25 @@ const EntryList:FC<Props> = ({ status}) => {
 
     const { entries } = useContext(EntriesContext);
 
+    const [isAdding, setIsAdding] = useState(false);
+
     const entriesByStatus = useMemo(() => entries.filter(entry => entry.status === status), [entries]);
 
     return (
             <div
                 className="p-4 bg-white border border-gray-200 rounded-lg shadow
                     sm:p-8 dark:bg-gray-800 dark:border-gray-700 overflow-y-auto">
-                <button className="flex items-center justify-center bg-blue-600 w-full
-                            mb-2 rounded-full p-1 font-semibold text-xs hover:bg-blue-500 transition ease-in">
-                    <PlusCircleIcon className="h-5 mr-2"/>Agregar Tarea
-                </button>
-                <textarea
-                    placeholder="Nueva Tarea"
-                    className="w-full dark:bg-slate-700 bg-slate-100  text-xs rounded-md p-1 outline-0"
-                />
-                <NewEntry/>
+                { isAdding
+                    ?  <NewEntry setIsAdding={setIsAdding} />
+
+                    : <button
+                        className="flex items-center justify-center bg-blue-600 w-full
+                            mb-2 rounded-full p-1 font-semibold text-xs hover:bg-blue-500 transition ease-in"
+                        onClick={() => setIsAdding(true) }
+                    >
+                        <PlusCircleIcon className="h-5 mr-2"/>Agregar Tarea
+                    </button>
+                }
 
                 <div className="items-center justify-between divide-y divide-gray-200 dark:divide-gray-700">
                     <hr className="mb-1 opacity-0"/>

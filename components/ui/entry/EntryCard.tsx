@@ -17,11 +17,6 @@ function EntryCard( { entry }: Props) {
                         hace 30 minutos
                     </p>
                 </div>
-                {/*<div*/}
-                {/*    className="inline-flex items-center text-base font-semibold text-gray-900*/}
-                {/*                dark:text-white">*/}
-                {/*    $320*/}
-                {/*</div>*/}
             </div>
         </li>
 
