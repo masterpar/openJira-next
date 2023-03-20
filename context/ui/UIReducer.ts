@@ -1,8 +1,11 @@
 import {UIState} from "./UIProvider";
 
 type UIActionType =
-    { type: '[UI] - Open Sidebar' }
+      { type: '[UI] - Open Sidebar' }
     | { type: '[UI] - Close Sidebar' }
+    | { type: '[UI] - AddinEntry', payload: boolean }
+    | { type: '[UI] - Start Dragging' }
+    | { type: '[UI] - End Dragging' }
 
 export const UIReducer = (state: UIState, action:UIActionType):UIState => {
 
@@ -16,6 +19,21 @@ export const UIReducer = (state: UIState, action:UIActionType):UIState => {
                 return {
                     ...state,
                     sideMenuOpen: false
+                }
+            case "[UI] - AddinEntry":
+                return {
+                    ...state,
+                    AddingEntry: action.payload
+                }
+            case "[UI] - Start Dragging":
+                return {
+                    ...state,
+                    isDragging: true
+                }
+            case "[UI] - End Dragging":
+                return {
+                    ...state,
+                    isDragging: false
                 }
             default:
                 return state

@@ -5,6 +5,8 @@ import EntryList from "../components/ui/entry/EntryList";
 
 export default function HomePage() {
 
+
+
   return (
     <>
       <Head>
@@ -15,7 +17,7 @@ export default function HomePage() {
         <Layout title="Open Jira">
             <div className="grid grid-cols-3 mt-6 space-x-4 h-[calc(100vh-80px)] font-dm">
 
-                <EntryList status="pending"/>
+                <EntryList status="pending" />
 
                 <EntryList status="in-progress"/>
 
